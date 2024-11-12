@@ -1,0 +1,341 @@
+﻿/* Kiểu dáng chung */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    color: #333;
+    overflow-x: hidden; /* Ngăn cuộn ngang */
+}
+
+/* Khung Chính */
+.khung-chinh {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: flex-start;
+    animation: fadeIn 1s ease-out; /* Hiệu ứng chuyển động */
+}
+
+/* Thanh Bên */
+.thanh-ben {
+    width: 220px;
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: transform 0.3s ease-in-out; /* Hiệu ứng khi sidebar thay đổi */
+}
+
+    .thanh-ben img {
+        width: 60px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        border: 2px solid #ddd;
+        transition: transform 0.3s ease; /* Hiệu ứng phóng to ảnh logo */
+    }
+
+        .thanh-ben img:hover {
+            transform: scale(1.1); /* Phóng to logo khi hover */
+        }
+
+    .thanh-ben h1 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+        transition: color 0.3s ease;
+    }
+
+    .thanh-ben ul {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+    }
+
+        .thanh-ben ul li {
+            margin-top: 15px;
+        }
+
+            .thanh-ben ul li a {
+                text-decoration: none;
+                color: #333;
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+                padding: 10px;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            }
+
+                .thanh-ben ul li a:hover {
+                    background-color: #e8e8e8;
+                    color: #1abc9c;
+                    transform: translateX(10px); /* Dịch chuyển nhẹ sang phải khi hover */
+                }
+
+/* Thanh Đầu */
+.thanh-dau {
+    position: fixed;
+    left: 270px;
+    right: 0;
+    top: 0;
+    height: 60px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: left 0.3s ease; /* Hiệu ứng khi thanh đầu chuyển đổi vị trí */
+}
+
+    .thanh-dau .bieu-tuong {
+        display: flex;
+        align-items: center;
+    }
+
+        .thanh-dau .bieu-tuong i {
+            font-size: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+            .thanh-dau .bieu-tuong i:hover {
+                color: #333;
+                transform: scale(1.1); /* Phóng to icon khi hover */
+            }
+
+    .thanh-dau .ten-nguoi-dung {
+        font-size: 16px;
+        font-weight: bold;
+        color: #555;
+    }
+
+/* Nội dung chính */
+.noi-dung-chinh {
+    margin-top: 80px;
+    margin-left: 240px;
+    padding: 20px;
+    width: calc(100% - 240px);
+    max-width: 800px;
+    box-sizing: border-box;
+    animation: scaleUp 0.5s ease; /* Hiệu ứng thu phóng khi hiển thị */
+}
+
+/* Các phần */
+.phan {
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transform: translateY(0);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .phan:hover {
+        transform: translateY(-5px); /* Nâng hộp lên khi hover */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Tăng bóng đổ */
+    }
+
+    .phan h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 0 15px;
+        color: #333;
+    }
+
+    .chi-tiet-thong-tin p,
+    .phan p {
+        margin: 20px 0;
+        font-size: 15px;
+        color: #555;
+    }
+
+.nut-chinh-sua {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+    .nut-chinh-sua:hover {
+        background-color: #2980b9;
+        transform: scale(1.05); /* Phóng to nút khi hover */
+    }
+
+/* Phần Điểm Thưởng */
+.diem-thuong {
+    text-align: center;
+}
+
+    .diem-thuong p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2980b9;
+        margin-top: 10px;
+    }
+/* Phần Lịch Sử Đơn Hàng */
+.don-hang {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .don-hang:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+.trang-thai {
+    font-weight: bold;
+}
+
+    .trang-thai.hoan-tat {
+        color: green;
+    }
+
+    .trang-thai.dang-xu-ly {
+        color: orange;
+    }
+
+.xem-chi-tiet {
+    padding: 8px 15px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .xem-chi-tiet:hover {
+        background-color: #2980b9;
+    }
+
+/* Phần Quản Lý Thanh Toán */
+.bang-thanh-toan {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+    .bang-thanh-toan th, .bang-thanh-toan td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    .bang-thanh-toan th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+
+.trang-thai.hoan-tat {
+    color: green;
+}
+
+.trang-thai.huy {
+    color: red;
+}
+
+/* Phần Điểm Thưởng */
+.diem-thuong {
+    text-align: center;
+}
+
+.diem-hien-tai {
+    font-size: 24px;
+    color: #2980b9;
+    font-weight: bold;
+}
+
+.thanh-tien-trinh {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.muc-tien-trinh {
+    height: 100%;
+    background-color: #3498db;
+}
+
+/* Hiệu ứng chuyển động khi hiển thị */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Media Queries để hiển thị tốt trên các thiết bị nhỏ hơn */
+@media (max-width: 768px) {
+    .thanh-ben {
+        width: 180px;
+        transform: translateX(-100%); /* Ẩn sidebar khi màn hình nhỏ */
+    }
+
+        .thanh-ben.active {
+            transform: translateX(0); /* Hiện sidebar khi có lớp "active" */
+        }
+
+    .thanh-dau {
+        left: 0;
+        padding: 0 10px;
+    }
+
+    .noi-dung-chinh {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .nut-chinh-sua {
+        padding: 8px 16px;
+    }
+
+    /* Button để mở/đóng Sidebar */
+    .menu-toggle {
+        display: inline-block;
+        position: absolute;
+        left: 10px;
+        top: 15px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}

@@ -1,0 +1,65 @@
+﻿@model KoiPool_Project.Models.UserModel
+@{
+    ViewData["Title"] = "Register";
+}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="~/css/Login.css">
+</head>
+<body>
+    <div>
+        <!-- Nút Home -->
+        <button class="come-back" onclick="location.href='@Url.Action("Index", "Home")'">Home</button>
+    </div>
+    <div class="container">
+        <div class="signup form">
+            <header>Signup</header>
+            @* Chỉ hiển thị các lỗi chung không phải required *@
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="validation-summary-errors text-danger">
+                    @foreach (var modelError in ViewData.ModelState.Values
+                   .SelectMany(v => v.Errors)
+                   .Select(e => e.ErrorMessage)
+                   .Where(msg => !msg.Contains("Vui lòng nhập"))
+                   .Distinct())
+                    {
+                        <p>@modelError</p>
+                    }
+                </div>
+            }
+            <form asp-action="Create" asp-controller="Account" method="post">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <input asp-for="Username" class="form-control" placeholder="Username" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <button type="submit">Signup</button>
+            </form>
+            <div class="signup">
+                <span class="signup">
+                    Already have an account?
+                    <a asp-action="Login">Login</a>
+                </span>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
+</body>
+</html>

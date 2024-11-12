@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KDC Vietnam</title>
+    <link rel="stylesheet" href="~/css/quanli.css">
+    <script defer src="~/js/quanli.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/c781fd97e2.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="~/images/Logo.png" type="image/x-icon">
+</head>
+<body>
+
+    <div class="khung-chinh">
+        <!-- Sidebar -->
+        <div class="thanh-ben">
+            <img src="~/images/Logo.png" alt="Logo">
+            <h1>KDC Vietnam</h1>
+            <ul>
+                <li><a href="#"><i class="fas fa-user-circle"></i> Thông tin cá nhân</a></li>
+                <li><a href="#"><i class="fas fa-cogs"></i> Quản lí bảo dưỡng</a></li>
+                <li><a href="#"><i class="fas fa-project-diagram"></i> Quản lí thi công</a></li>
+            </ul>
+        </div>
+
+        <!-- Header -->
+        <div class="thanh-dau">
+            <div class="bieu-tuong">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-envelope"></i>
+            </div>
+            <div class="ten-nguoi-dung">Jessica</div>
+        </div>
+
+        <!-- Nội dung chính -->
+        <div class="noi-dung-chinh">
+
+            <!-- Phần Thông Tin Cá Nhân -->
+            <div class="phan thong-tin-ca-nhan">
+                <h2>Thông Tin Cá Nhân</h2>
+                <div class="chi-tiet-thong-tin">
+                    <p><strong>Họ và Tên:</strong> [Tên Khách Hàng]</p>
+                    <p><strong>Mã Khách Hàng:</strong> [Mã số]</p>
+                    <p><strong>Số Điện Thoại:</strong> [Số điện thoại]</p>
+                    <p><strong>Địa Chỉ:</strong> [Địa chỉ]</p>
+                </div>
+                <button class="nut-chinh-sua">Cập Nhật Thông Tin</button>
+            </div>
+
+            <!-- Phần Lịch Sử Đơn Hàng -->
+            <div class="phan lich-su-don-hang">
+                <h2>Lịch Sử Đơn Hàng</h2>
+                <div id="don-hang-container">
+                    <!-- Đơn hàng sẽ được chèn vào đây bởi JavaScript -->
+                </div>
+            </div>
+
+            <!-- Phần Quản Lý Thanh Toán -->
+            <div class="phan quan-ly-thanh-toan">
+                <h2>Quản Lý Thanh Toán</h2>
+                <table class="bang-thanh-toan" id="bang-thanh-toan">
+                    <tr>
+                        <th>Mã Giao Dịch</th>
+                        <th>Ngày</th>
+                        <th>Số Tiền</th>
+                        <th>Trạng Thái</th>
+                    </tr>
+                    <!-- Dòng thanh toán sẽ được chèn vào đây bởi JavaScript -->
+                </table>
+            </div>
+
+            <!-- Phần Điểm Thưởng -->
+            <div class="phan diem-thuong">
+                <h2>Điểm Thưởng</h2>
+                <p><span class="diem-hien-tai" id="diem-hien-tai">0</span> điểm</p>
+                <div class="thanh-tien-trinh">
+                    <div class="muc-tien-trinh" id="muc-tien-trinh" style="width: 0%;"></div>
+                </div>
+                <p>Mục tiêu tiếp theo: <span id="muc-tieu-tiep-theo">2000</span> điểm</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

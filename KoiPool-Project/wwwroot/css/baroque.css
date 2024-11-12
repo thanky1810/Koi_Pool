@@ -1,0 +1,305 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.toan-bo-noi-dung {
+    max-width: 1900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Căn chỉnh ảnh để phù hợp với mọi kích thước màn hình */
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    padding: 0;
+}
+
+.tieu-de {
+    text-align: left;
+    margin-bottom: 40px;
+}
+
+    .tieu-de h1 {
+        font-size: 2.5em;
+        color: #333;
+    }
+
+.ngay-dang {
+    font-size: 0.9em;
+    color: #777;
+    font-style: italic;
+}
+
+.noi-dung-chinh {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 10px;
+}
+
+/* Khung chứa ảnh cố định */
+.khung-anh {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .khung-anh img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+        .khung-anh img:hover {
+            transform: scale(1.05);
+        }
+
+.noi-dung h2 {
+    font-size: 1.8em;
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+}
+
+.noi-dung h3 {
+    font-size: 1.5em;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.noi-dung p {
+    margin: 15px 0;
+    line-height: 1.8;
+}
+
+/* Ảnh toàn màn hình */
+.hinh-mo-dau {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 20px 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .hinh-mo-dau:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+    ul li {
+        margin: 10px 0;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+    }
+
+        ul li .icon {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #007bff;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+.thanh-ben {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+/* Cấu trúc cơ bản của .phan-chuyen-muc */
+.phan-chuyen-muc {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .phan-chuyen-muc ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .phan-chuyen-muc ul li {
+            margin: 10px 0;
+        }
+
+            .phan-chuyen-muc ul li a {
+                padding: 10px;
+                display: inline-block;
+                text-decoration: none;
+                color: #333;
+                border-radius: 5px;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+
+                /* Hiệu ứng khi di chuột vào mục */
+                .phan-chuyen-muc ul li a:hover {
+                    background-color: #f0f0f0;
+                    color: #007bff;
+                }
+
+/* Hiệu ứng khi nhấn vào và giữ trạng thái đang chọn */
+.highlight-chuyen-muc {
+    background-color: #ffd966; /* Màu vàng khi được chọn */
+    color: #333;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+s
+.phan-noi-dung,
+.phan-chuyen-muc {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .phan-noi-dung ul li a,
+    .phan-chuyen-muc ul li a {
+        color: #333;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        transition: color 0.3s;
+    }
+
+        .phan-noi-dung ul li a:hover,
+        .phan-chuyen-muc ul li a:hover {
+            color: #007bff;
+        }
+
+.trang {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #333;
+    color: #f4f4f4;
+    text-align: left;
+    border-radius: 8px;
+    font-size: 1.1em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+    .fade-in.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+/* CSS cho hiệu ứng highlight */
+.highlight {
+    background-color: rgba(121, 121, 121, 0.755); /* Màu nền vàng để đánh dấu mục đang truy cập */
+    color: #333; /* Màu chữ để dễ đọc */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.phan-noi-dung ul li a {
+    padding: 5px 10px; /* Tạo padding cho liên kết để tăng không gian highlight */
+}
+
+    .phan-noi-dung ul li a:hover {
+        color: #007bff; /* Màu khi hover */
+    }
+
+/* Màn hình nhỏ (điện thoại) */
+@media (max-width: 600px) {
+    .tieu-de h1 {
+        font-size: 1.8em;
+    }
+
+    .noi-dung h2 {
+        font-size: 1.5em;
+    }
+
+    .noi-dung h3 {
+        font-size: 1.3em;
+    }
+
+    .noi-dung p {
+        font-size: 1em;
+    }
+
+    .noi-dung-chinh {
+        grid-template-columns: 1fr; /* Chuyển thành 1 cột cho màn hình nhỏ */
+    }
+
+    .khung-anh {
+        max-width: 90%; /* Điều chỉnh kích thước ảnh nhỏ hơn cho màn hình nhỏ */
+    }
+}
+
+/* Màn hình trung bình (máy tính bảng) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .tieu-de h1 {
+        font-size: 2em;
+    }
+
+    .noi-dung h2 {
+        font-size: 1.6em;
+    }
+
+    .noi-dung h3 {
+        font-size: 1.4em;
+    }
+
+    .noi-dung p {
+        font-size: 1.1em;
+    }
+
+    .khung-anh {
+        max-width: 80%;
+    }
+}
+
+/* Màn hình lớn (máy tính để bàn) */
+@media (min-width: 1025px) {
+    .tieu-de h1 {
+        font-size: 2.5em;
+    }
+
+    .noi-dung h2 {
+        font-size: 1.8em;
+    }
+
+    .noi-dung h3 {
+        font-size: 1.5em;
+    }
+
+    .noi-dung p {
+        font-size: 1.2em;
+    }
+}

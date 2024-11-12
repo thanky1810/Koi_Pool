@@ -1,0 +1,102 @@
+﻿/*Menu*/
+window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    if (window.scrollY === 0) {
+        // Khi ở đầu trang
+        header.style.background = "transparent";
+        header.style.boxShadow = "none";
+    } else {
+        // Khi đã cuộn xuống
+        header.style.background = "linear-gradient(90deg, #060707, #058697)";
+        header.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+    }
+});
+// Toggle menu on mobile view
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('show');
+});
+
+// Handle dropdown toggle on mobile view
+const dropdownTogglers = document.querySelectorAll('.dropdown-toggler');
+
+dropdownTogglers.forEach(toggler => {
+    toggler.addEventListener('click', function (e) {
+        e.preventDefault();
+        const parentDropdown = this.parentElement;
+        parentDropdown.classList.toggle('active');
+    });
+});
+/* */
+document.querySelectorAll('.navbar-dropdown').forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', function () {
+        const dropdownMenu = this.querySelector('.dropdown');
+        dropdownMenu.classList.add('show');
+    });
+
+    dropdown.addEventListener('mouseleave', function () {
+        const dropdownMenu = this.querySelector('.dropdown');
+        dropdownMenu.classList.remove('show');
+    });
+});
+
+
+
+
+/*Thân */
+/* Đoạn mã JavaScript để thêm lớp appear khi cuộn đến */
+document.addEventListener('DOMContentLoaded', () => {
+    const articles = document.querySelector('.articles');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('appear');
+            }
+        });
+    });
+    observer.observe(articles);
+});
+// Hiệu ứng xuất hiện khi cuộn tới phần Bài Viết
+const articlesSection = document.querySelector('.articles');
+const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -100px 0px"
+};
+
+const onScrollAppear = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+onScrollAppear.observe(articlesSection);
+
+// Hiệu ứng khi di chuột vào từng thẻ bài viết (scale và highlight)
+const articleCards = document.querySelectorAll('.article-card');
+
+articleCards.forEach(card => {
+    card.addEventListener('mouseover', () => {
+        card.style.transform = 'scale(1.05)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)';
+    });
+
+    // Xử lý sự kiện nhấp chuột vào từng bài viết
+    card.addEventListener('click', (e) => {
+        const link = card.querySelector('a');
+        if (link) {
+            e.preventDefault(); // Ngăn chặn hành vi mặc định để đảm bảo JS điều khiển chuyển hướng
+            window.location.href = link.getAttribute('href');
+        }
+    });
+});
+/* */
+
+/*Footer */

@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt thi công hồ cá Koi</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/c781fd97e2.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="~/images/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/duan.css">
+    <script defer src="~/js/duan.js"></script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <i class="fa fa-phone"></i> 0902 520 536
+        </div>
+        <div class="top-bar-right">
+            <a asp-action="LichSu" asp-controller="Home"><i class="fa fa-file-text-o"></i> Điều khoản chính sách</a> |
+            <a asp-action="QuanLi" asp-controller="Home"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="PersonalProfile" asp-action="Index" style="cursor: pointer"><i class="fa-solid fa-user"></i>@User.Identity.Name</a>
+                <a asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Đăng Nhập</a>
+                <a asp-controller="Account" asp-action="Create"><i class="fa fa-user-plus"></i> Đăng Ký</a>
+            }
+            <a href="#"><i class="fab fa-facebook facebook-icon"></i></a>
+            <a href="#"><i class="fab fa-twitter twitter-icon"></i></a>
+            <a href="#"><i class="fab fa-youtube youtube-icon"></i></a>
+        </div>
+    </div>
+    <header>
+        <div class="logo-container">
+            <img src="~/images/Logo.png" alt="Logo">
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+        <nav>
+            <ul>
+                <b>
+                <li><a onclick="location.href='@Url.Action("Index", "Home")'">Trang Chủ</a></li>
+                <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
+                <li><a asp-action="DuAn" asp-controller="Home">Dự Án</a></li>
+                <!-- Dropdown for Dịch vụ -->
+                <li class="navbar-dropdown">
+                    <a asp-action="DichVu" asp-controller="Home" class="dropdown-toggler">Dịch vụ<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a asp-action="DichVu" asp-controller="Home">Thiết kế và thi công hồ cá KOI</a></li>
+                    </ul>
+                </li>
+                <!-- Dropdown for Báo Giá -->
+                <li class="navbar-dropdown">
+                    <a asp-action="BaoGia" asp-controller="Home" class="dropdown-toggler">Báo Giá<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a asp-action="BaoGia" asp-controller="Home">Báo giá thiết kế hồ cá KOI</a></li>
+                    </ul>
+                </li>
+                <li><a asp-action="Blog" asp-controller="Home">Blog</a></li>
+                <li><a asp-action="LienHe" asp-controller="Home">Liên Hệ</a></li>
+                </b>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Phần header với hình ảnh lớn -->
+    <section class="trang-du-an">
+        <div class="trang-du-an-overlay">
+            <h1>DỰ ÁN</h1>
+            <p><a href="Trangchu.html" style="color: #fff; text-decoration: none;">Trang chủ</a> >> Dự Án</p>
+        </div>
+    </section>
+
+    <main>
+        <!-- Featured Project Section -->
+        <section class="du-an">
+            <h1>ALL</h1>
+            <div class="san-pham-du-an">
+                <!-- Project Item 1 -->
+                <div class="project-item">
+                    <img src="~/images/H13.jpg" alt="Dự án 1">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 1</h3>
+                        <p><i class="fas fa-tree"></i> Hồ cá Koi ngoài trời với cây xanh và đá, tạo nên không gian hài hòa tự nhiên.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Khu nghỉ dưỡng Hà Nội</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 30m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Thiết kế theo phong cách Nhật Bản với hệ sinh thái tự nhiên.</p>
+                    </div>
+                </div>
+
+                <!-- Project Item 2 -->
+                <div class="project-item">
+                    <img src="~/images/H14.jpg" alt="Dự án 2">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 2</h3>
+                        <p><i class="fas fa-tree"></i> Hồ cá với đá và cây cảnh bao quanh, tạo không gian thư giãn.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự quận 7, TP. HCM</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 25m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Kết hợp giữa phong cách hiện đại và cổ điển.</p>
+                    </div>
+                </div>
+
+                <!-- Project Item 3 -->
+                <div class="project-item">
+                    <img src="~/images/H15.jpg" alt="Dự án 3">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 3</h3>
+                        <p><i class="fas fa-tree"></i> Không gian hồ cá Koi bên ngoài nhà kết hợp với tiểu cảnh cây xanh.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Resort Đà Lạt</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 20m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Phong cách thiên nhiên mộc mạc, phù hợp với khí hậu mát mẻ.</p>
+                    </div>
+                </div>
+
+                <!-- Additional project items up to Project Item 12 -->
+                <div class="project-item">
+                    <img src="~/images/H17.jpg" alt="Dự án 4">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 4</h3>
+                        <p><i class="fas fa-tree"></i> Hồ cá nhỏ trong khuôn viên sân vườn nhà phố.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Nhà phố Thảo Điền</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 15m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Tối ưu diện tích nhỏ với thiết kế tối giản.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H12.jpg" alt="Dự án 5">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 5</h3>
+                        <p><i class="fas fa-tree"></i> Hồ cá Koi phong cách truyền thống kết hợp gỗ và đá tự nhiên.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự Hồ Tây</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 40m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Không gian cổ điển, hài hòa với thiên nhiên.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H16.jpg" alt="Dự án 6">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 6</h3>
+                        <p><i class="fas fa-tree"></i> Thiết kế hồ cá Koi kết hợp với cây bonsai, mang đậm chất nghệ thuật.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Nhà riêng Phú Nhuận</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 20m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Sự kết hợp của nghệ thuật truyền thống và hiện đại.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H11.jpg" alt="Dự án 7">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 7</h3>
+                        <p><i class="fas fa-tree"></i> Hồ cá Koi với cầu đá bắt qua, kết nối không gian thiên nhiên.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Resort Nha Trang</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 35m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Không gian thư giãn với cảnh quan xanh mát.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H9.jpg" alt="Dự án 8">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 8</h3>
+                        <p><i class="fas fa-tree"></i> Hồ cá Koi ngoài trời với nhiều loại cây thủy sinh.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự Quảng Ninh</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 30m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Kết hợp nhiều loại cây và đá, tạo điểm nhấn độc đáo.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H8.jpg" alt="Dự án 9">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 9</h3>
+                        <p><i class="fas fa-tree"></i> Thiết kế hồ Koi với đá và nhà cổ điển.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự Đà Nẵng</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 50m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Thiết kế sang trọng, hợp phong thủy.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H6.jpg" alt="Dự án 10">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 10</h3>
+                        <p><i class="fas fa-tree"></i> Thiết kế hồ Koi với nhiều loại đá, hài hòa và thu hút tài lộc.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự Đà Nẵng</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 50m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Thiết kế sang trọng, hợp phong thủy.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H4.jpg" alt="Dự án 11">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 11</h3>
+                        <p><i class="fas fa-tree"></i> Thiết kế hồ Koi ngoài trời khu thư giản.</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự Đà Nẵng</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 50m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Thiết kế sang trọng, hợp phong thủy.</p>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <img src="~/images/H3.jpg" alt="Dự án 12">
+                    <div class="overlay">
+                        <h3><i class="fas fa-paint-brush"></i>Dự Án Koi 12</h3>
+                        <p><i class="fas fa-tree"></i> Thiết kế hồ Koi bên cạnh nhà kính và đá phong thuỷ</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Vị trí: Biệt thự Đà Nẵng</p>
+                        <p><i class="fas fa-ruler-combined"></i> Diện tích: 50m²</p>
+                        <p><i class="fas fa-star"></i> Đặc điểm: Thiết kế sang trọng, hợp phong thủy.</p>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+        </section>
+    </main>
+    <!--                HẾT                -->
+    <!-- Footer Section -->
+    <section class="features">
+        <!-- Phần công ty -->
+        <div class="featurecard">
+            <img src="~/images/Logo.png" alt="Company Logo">
+            <h3>CTY KIẾN TRÚC CẢNH QUAN</h3>
+            <br>
+            <p><i class="fas fa-map-marker-alt"></i> Studio: 439 Kha Vạn Cân, Hiệp Bình Chánh, TP.Thủ Đức</p>
+            <p><i class="fas fa-building"></i> Văn phòng: 32 Bác Ái, Bình Thọ, TP. Thủ Đức</p>
+            <p><i class="fas fa-industry"></i> Xưởng: 255 Võ Văn Ngân, Linh Chiểu, TP. Thủ Đức</p>
+            <p><i class="fas fa-phone-alt"></i> Điện thoại: 0902 520 536</p>
+            <p><i class="fas fa-fax"></i> Số Fax: 0968 8947</p>
+            <p><i class="fas fa-envelope"></i> Email: info@kdc.com</p>
+            <p><i class="fas fa-id-badge"></i> Mã số doanh nghiệp: 0421586682 cấp (30/10/2024)</p>
+        </div>
+
+        <!-- Phần Chính sách dịch vụ -->
+        <div class="policy-section">
+            <h2>CHÍNH SÁCH DỊCH VỤ</h2>
+            <ul class="policy-list">
+                <li><i class="fas fa-check-circle"></i> Vệ sinh</li>
+                <li><i class="fas fa-check-circle"></i> Chăm sóc định kỳ</li>
+                <li><i class="fas fa-check-circle"></i> Bảo dưỡng</li>
+            </ul>
+            <br>
+            <!-- Phần Dịch vụ -->
+            <h2>DỊCH VỤ</h2>
+            <div class="services-list">
+                <a asp-action="DichVu" asp-controller="Home">▶ Thiết kế & thi công hồ cá KOI</a>
+            </div>
+        </div>
+
+        <!-- Phần sản phẩm -->
+        <div class="product-section">
+            <h2>SẢN PHẨM</h2>
+            <div class="product-slider">
+                <div class="product-images">
+                    <img src="~/images/KOI_1.png" alt="Sản phẩm 1">
+                    <img src="~/images/KOI_2.png" alt="Sản phẩm 2">
+                    <img src="~/images/KOI_3.png" alt="Sản phẩm 3">
+                    <img src="~/images/KOI_4.png" alt="Sản phẩm 4">
+                    <img src="~/images/KOI_5.png" alt="Sản phẩm 5">
+                </div>
+            </div>
+        </div>
+        <!-- Phần Liên hệ báo giá -->
+        <div class="contact-section">
+            <h2>LIÊN HỆ BÁO GIÁ</h2>
+            <a class="hotline" href="#">HOTLINE: 0978 855 597</a>
+            <p><b>Gửi yêu cầu báo giá</b></p>
+        </div>
+    </section>
+
+    <footer>
+        <pre>CNPM Vietnam 2024  All Rights Reserved.                                                        Điều khoản sử dụng | Chính sách bảo mật | Chính sách và quy định chung</pre>
+    </footer>
+</body>
+</html>   

@@ -1,0 +1,105 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #4caf50;
+    font-family: Arial, sans-serif;
+}
+
+.center-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 20px;
+}
+
+.center-card h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    /* h2 (Profile) sẽ căn trái */
+}
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.profile-content img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+    /* Căn giữa ảnh */
+    align-self: center;
+}
+
+    .profile-content h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        /* Căn giữa tên */
+        text-align: center;
+    }
+
+.title {
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 8px;
+    /* Title sẽ căn trái */
+    text-align: left;
+}
+
+.profile-content p {
+    margin-bottom: 15px;
+    /* Các đoạn văn sẽ căn trái */
+    text-align: left;
+}
+
+.social-links {
+    margin: 20px 0;
+    /* Phần social links sẽ căn trái */
+    text-align: left;
+}
+
+.social-links a {
+    margin-right: 20px; /* Thay đổi margin để các icon cách đều nhau */
+    text-decoration: none;
+    color: #333;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.social-links a:last-child {
+    margin-right: 0; /* Bỏ margin-right của icon cuối cùng */
+}
+
+.social-links a:hover {
+    color: #4caf50;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+    button:hover {
+        background-color: #45a049;
+    }
