@@ -2,6 +2,7 @@ using KoiPool_Project.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using KoiPool_Project.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,8 @@ builder.Services.AddIdentity<AppUserModel, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<DataContext>()
 .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<IUserClaimsPrincipalFactory<AppUserModel>, CustomClaimsPrincipalFactory>();
 
 // Configure Cookie Authentication
 builder.Services.ConfigureApplicationCookie(options =>
@@ -88,6 +91,7 @@ using (var scope = app.Services.CreateScope())
         logger.LogError(ex, "An error occurred while migrating or seeding the database.");
     }
 }
+
 
 app.UseStaticFiles();
 
