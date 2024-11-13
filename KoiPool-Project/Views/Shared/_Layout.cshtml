@@ -18,8 +18,15 @@
             <i class="fa fa-phone"></i> 0902 520 536
         </div>
         <div class="top-bar-right">
-            <a asp-action="LichSu" asp-controller="Home"><i class="fa fa-file-text-o"></i> Điều khoản chính sách</a> |
-            <a asp-action="QuanLi" asp-controller="Home"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+            @if(User.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-action="QuanLi" asp-controller="Home"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+            }
+
             @if (User.Identity?.IsAuthenticated ?? false)
             {
                 <a asp-controller="PersonalProfile" asp-action="Index" style="cursor: pointer">

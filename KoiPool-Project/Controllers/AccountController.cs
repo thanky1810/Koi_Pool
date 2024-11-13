@@ -2,6 +2,7 @@ using KoiPool_Project.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using KoiPool_Project.Models.ViewModels;
+using System.Security.Claims;
 namespace KoiPool_Project.Controllers
 {
     public class AccountController : Controller
@@ -36,9 +37,13 @@ namespace KoiPool_Project.Controllers
 
                 if (result.Succeeded)
                 {
-                    //return !string.IsNullOrEmpty(loginVM.ReturnUrl)
-                    //    ? Redirect(loginVM.ReturnUrl)
-                    //    : RedirectToAction("Index", "Home");
+                    // Lấy thông tin người dùng từ UserManager
+                    var user = await _userManager.FindByNameAsync(loginVM.Username);
+                    string email = user?.Email;
+
+                    // Log hoặc xử lý Email
+                    Console.WriteLine($"Người dùng đã đăng nhập với email: {email}");
+
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không chính xác");
