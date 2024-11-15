@@ -84,6 +84,9 @@ namespace KoiPool_Project.Areas.Admin.Controllers
                     UserName = model.Username,
                     Email = model.Email,
                     Occupation = model.Role,
+                    Address = "",
+                    Name = "",
+                    Sex = "",
                     EmailConfirmed = true // Tự động xác nhận email
                 };
 

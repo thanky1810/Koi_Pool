@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace KoiPool_Project.Services
 {
@@ -18,9 +19,12 @@ namespace KoiPool_Project.Services
         {
             var identity = await base.GenerateClaimsAsync(user);
 
-            // Thêm các claim tùy chỉnh
+            // Add custom claims
             identity.AddClaim(new Claim(ClaimTypes.Email, user.Email ?? ""));
+            identity.AddClaim(new Claim("PhoneNumber", user.PhoneNumber ?? ""));
+            identity.AddClaim(new Claim("Address", user.Address ?? ""));
             identity.AddClaim(new Claim("Occupation", user.Occupation ?? ""));
+            identity.AddClaim(new Claim("Name", user.Name ?? ""));
 
             return identity;
         }

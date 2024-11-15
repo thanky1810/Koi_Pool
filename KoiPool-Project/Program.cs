@@ -76,7 +76,7 @@ using (var scope = app.Services.CreateScope())
         var userManager = services.GetRequiredService<UserManager<AppUserModel>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
-        context.Database.Migrate();
+        await context.Database.MigrateAsync();
 
         // Seed default roles if they don't exist
         if (!roleManager.Roles.Any())

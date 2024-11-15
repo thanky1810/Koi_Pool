@@ -1,4 +1,8 @@
 ﻿@using System.Security.Claims
+@model KoiPool_Project.Models.AppUserModel
+@{
+    ViewData["Title"] = "Personal Information";
+}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -29,12 +33,13 @@
         <!-- Header -->
         <div class="thanh-dau">
             <div class="bieu-tuong">
+                
                 <i class="fas fa-bell"></i>
                 <i class="fas fa-envelope"></i>
             </div>
-                @if(User.Identity?.IsAuthenticated ?? false)
-                {
-                <div class="ten-nguoi-dung">@User.Identity.Name</div>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <div class="ten-nguoi-dung">@User.FindFirstValue("Name")</div>
             }
             else
             {
@@ -42,35 +47,56 @@
             }
         </div>
 
-        <!-- Nội dung chính -->
+        <!-- Main Content -->
         <div class="noi-dung-chinh">
-
-            <!-- Phần Thông Tin Cá Nhân -->
-            <div class="phan thong-tin-ca-nhan">
+            <button class="nut-chinh-sua" onclick="location.href='@Url.Action("Index", "Home")'">Home</button>
+            <!-- Personal Information Display (initially visible) -->
+            <div class="phan thong-tin-ca-nhan" id="personalInfo">
                 <h2>Thông Tin Cá Nhân</h2>
                 <div class="chi-tiet-thong-tin">
-                    <p><strong>Họ và Tên:</strong> [Tên Khách Hàng]</p>
-                    <p><strong>Email:</strong>@User.FindFirstValue(ClaimTypes.Email) </p>
-                    <p><strong>Số Điện Thoại:</strong> [Số điện thoại]</p>
-                    <p><strong>Địa Chỉ:</strong> [Địa chỉ]</p>
+                    <p><strong>Họ và Tên:</strong> @User.FindFirstValue("Name")</p>
+                    <p><strong>Email:</strong> @User.FindFirstValue(ClaimTypes.Email) </p>
+                    <p><strong>Số Điện Thoại:</strong> @User.FindFirstValue("PhoneNumber")</p>
+                    <p><strong>Địa chỉ:</strong> @User.FindFirstValue("Address")</p>
                     <div class="radio-group">
                         <label><input type="radio" name="gender" value="Nam" checked> Nam</label>
                         <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
                         <label><input type="radio" name="gender" value="Khác"> Khác</label>
                     </div>
                 </div>
-                <button class="nut-chinh-sua">Cập Nhật Thông Tin</button>
+                <button class="nut-chinh-sua" onclick="toggleUpdateForm()">Cập Nhật Thông Tin</button>
             </div>
 
-            <!-- Phần Lịch Sử Đơn Hàng -->
-            <div class="phan lich-su-don-hang">
-                <h2>Lịch Sử Đơn Hàng</h2>
-                <div id="don-hang-container">
-                    <!-- Đơn hàng sẽ được chèn vào đây bởi JavaScript -->
+            <!-- Update Form (initially hidden) -->
+            <div class="phan thong-tin-ca-nhan" id="updateForm" style="display: none;">
+                <h2>Thông Tin Cá Nhân</h2>
+                <div class="chi-tiet-thong-tin">
+                    <form asp-action="Update" asp-controller="PersonalProfile" method="post">
+                        <p><strong>Họ và Tên:</strong> <input asp-for="Name" class="form-control" placeholder="@User.FindFirstValue("Name")" /></p>
+                        <p><strong>Email:</strong> <input asp-for="Email" class="form-control" placeholder="@User.FindFirstValue(ClaimTypes.Email)" /> </p>
+                        <p><strong>Số Điện Thoại:</strong> <input asp-for="PhoneNumber" class="form-control" placeholder="@User.FindFirstValue("PhoneNumber")" /></p>
+                        <p><strong>Địa Chỉ:</strong> <input asp-for="Address" class="form-control" placeholder="@User.FindFirstValue("Address")" /></p>
+                        <div class="radio-group">
+                            <label><input type="radio" name="gender" value="Nam" checked> Nam</label>
+                            <label><input type="radio" name="gender" value="Nữ"> Nữ</label>
+                            <label><input type="radio" name="gender" value="Khác"> Khác</label>
+                        </div>
+                        <button class="nut-chinh-sua" type="submit">Cập Nhật</button>
+                        <!-- Back Button -->
+                        <button type="button" class="nut-chinh-sua" onclick="toggleUpdateForm()">Quay Lại</button>
+                    </form>
                 </div>
             </div>
 
-            <!-- Phần Quản Lý Thanh Toán -->
+            <!-- Order History Section -->
+            <div class="phan lich-su-don-hang">
+                <h2>Lịch Sử Đơn Hàng</h2>
+                <div id="don-hang-container">
+                    <!-- Orders will be injected here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Payment Management Section -->
             <div class="phan quan-ly-thanh-toan">
                 <h2>Quản Lý Thanh Toán</h2>
                 <table class="bang-thanh-toan" id="bang-thanh-toan">
@@ -80,11 +106,11 @@
                         <th>Số Tiền</th>
                         <th>Trạng Thái</th>
                     </tr>
-                    <!-- Dòng thanh toán sẽ được chèn vào đây bởi JavaScript -->
+                    <!-- Payment rows will be injected here by JavaScript -->
                 </table>
             </div>
 
-            <!-- Phần Điểm Thưởng -->
+            <!-- Reward Points Section -->
             <div class="phan diem-thuong">
                 <h2>Điểm Thưởng</h2>
                 <p><span class="diem-hien-tai" id="diem-hien-tai">0</span> điểm</p>
@@ -96,5 +122,22 @@
 
         </div>
     </div>
+
+    <!-- JavaScript to toggle the form visibility -->
+    <script>
+        function toggleUpdateForm() {
+            var personalInfo = document.getElementById("personalInfo");
+            var updateForm = document.getElementById("updateForm");
+
+            // Toggle between showing personal info and update form
+            if (personalInfo.style.display === "none") {
+                personalInfo.style.display = "block";
+                updateForm.style.display = "none";
+            } else {
+                personalInfo.style.display = "none";
+                updateForm.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
