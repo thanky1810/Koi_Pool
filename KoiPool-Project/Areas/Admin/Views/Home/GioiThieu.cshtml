@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt thi công hồ cá Koi</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/c781fd97e2.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="~/images/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/gioithieu.css">
+    <script defer src="~/js/gioithieu.js"></script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <i class="fa fa-phone"></i> 0902 520 536
+        </div>
+        <div class="top-bar-right">
+            <a asp-action="QuanLi" asp-controller="Home"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="PersonalProfile" asp-action="Index" style="cursor: pointer"><i class="fa-solid fa-user"></i>@User.Identity.Name</a>
+                <a asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Đăng Nhập</a>
+                <a asp-controller="Account" asp-action="Create"><i class="fa fa-user-plus"></i> Đăng Ký</a>
+            }
+            <a href="#"><i class="fab fa-facebook facebook-icon"></i></a>
+            <a href="#"><i class="fab fa-twitter twitter-icon"></i></a>
+            <a href="#"><i class="fab fa-youtube youtube-icon"></i></a>
+        </div>
+    </div>
+    <header>
+        <div class="logo-container">
+            <img src="~/images/Logo.png" alt="Logo">
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+        <nav>
+            <ul>
+                <b>
+                <li><a onclick="location.href='@Url.Action("Index", "Home")'">Trang Chủ</a></li>
+                <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
+                <li><a asp-action="DuAn" asp-controller="Home">Dự Án</a></li>
+                <!-- Dropdown for Dịch vụ -->
+                <li class="navbar-dropdown">
+                    <a asp-action="DichVu" asp-controller="Home" class="dropdown-toggler">Dịch vụ<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a asp-action="DichVu" asp-controller="Home">Thiết kế và thi công hồ cá KOI</a></li>
+                    </ul>
+                </li>
+                <!-- Dropdown for Báo Giá -->
+                <li class="navbar-dropdown">
+                    <a asp-action="BaoGia" asp-controller="Home" class="dropdown-toggler">Báo Giá<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a asp-action="BaoGia" asp-controller="Home">Báo giá thiết kế hồ cá KOI</a></li>
+                    </ul>
+                </li>
+                <li><a asp-action="Blog" asp-controller="Home">Blog</a></li>
+                <li><a asp-action="LienHe" asp-controller="Home">Liên Hệ</a></li>
+                </b>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Phần header với hình ảnh lớn -->
+    <section class="trang-gioi-thieu">
+        <div class="trang-gioi-thieu-overlay">
+            <h1>GIỚI THIỆU</h1>
+            <p><a href="Trangchu.html" style="color: #fff; text-decoration: none;">Trang chủ</a> >> Giới thiệu</p>
+        </div>
+    </section>
+
+    <main>
+        <!-- Phần About Us -->
+        <div class="About-us1 fade-in">
+            <div class="image-About-us fade-in">
+                <img src="~/images/H20.jpg" alt="Anh1">
+            </div>
+            <div class="text-About-us fade-in">
+                <h1>About us</h1>
+                <p>Được thành lập từ năm 2022 với tên gọi ban đầu là CÔNG TY TNHH TƯ VẤN THIẾT KẾ VÀ CẢNH QUAN KDC. Đến năm 2023, sau khi trải qua quá trình tích lũy kinh nghiệm và phát triển, chúng tôi đã đổi tên thành CÔNG TY TNHH KIẾN TRÚC – CẢNH QUAN KDC để phản ánh rõ hơn về chuyên môn hoạt động của mình.</p>
+                <p>Trải qua các giai đoạn phát triển, cuối năm 2023, chúng tôi đã tiến hành tái cơ cấu bộ máy điều hành và vận hành, tăng cường năng lực quản lý để đáp ứng mạnh mẽ với sự phát triển ngày càng tăng của thị trường kiến trúc và cảnh quan.</p>
+                <p>Năm 2024, chúng tôi đã mở rộng và xác định lại các mảng dịch vụ khách hàng, tập trung vào việc mang đến giải pháp sáng tạo và chất lượng cho các dự án kiến trúc và cảnh quan.</p>
+                <p>Cuối năm 2024, chúng tôi kết hợp với các đối tác uy tín và thành lập KDC Vietnam, nhằm tạo ra sự đa dạng và phong phú trong quy trình sáng tạo và triển khai dự án. Chúng tôi tự hào khi tuy được nhiều kinh nghiệm áp dụng thực tế vào thực hiện nhiều dự án lớn như khu đô thị, biệt thự, nhà phố, resort, khu du lịch, khu công nghiệp đô thị, quán cafe và khu dân cư. Sứ mệnh của chúng tôi là “Thổi hồn vào các công trình kiến trúc và cảnh quan để biến chúng trở thành tác phẩm nghệ thuật.”</p>
+                <p>Mỗi công trình của chúng tôi được thực hiện với sự chăm chút đến từng chi tiết nhỏ nhất, để mỗi dự án không chỉ đem lại một câu chuyện và truyền tải một thông điệp triết lý.</p>
+                <p>Hãy đến và chia sẻ với chúng tôi về ý tưởng không gian trong mơ của bạn, KDC cam kết biến nó thành hiện thực, tạo nên không gian sống và làm việc đẳng cấp và độc đáo.</p>
+            </div>
+        </div>
+
+        <!-- Phần thứ hai -->
+        <div class="About-us2 fade-in">
+            <div class="text-About-us fade-in">
+                <h2>Bạn cho tôi không gian, tôi tặng bạn cảm xúc!</h2>
+                <p>Chúng tôi tin rằng không gian cảnh quan không chỉ là nơi, nó là cách bạn trải nghiệm cuộc sống. Sứ mệnh của chúng tôi là mang đến cho khách hàng những không gian sống nên thơ, yên bình và thanh lịch, qua phong cách thiết kế tinh tế và đầy triết lý Nhật.</p>
+                <p>Mỗi công trình cảnh quan của tôi là một tác phẩm độc đáo, phản ánh sự thành công và phong cách sống của khách hàng.</p>
+            </div>
+            <div class="image-About-us fade-in">
+                <img src="~/images/H8.jpg" alt="Anh2">
+            </div>
+        </div>
+
+        <!-- Phần Our Team -->
+        <section class="our-team fade-in">
+            <h2>Our Team</h2>
+            <div class="team-container">
+                <div class="team-row">
+                    <div class="team-member fade-in">
+                        <div class="member-photo">
+                            <img src="~/images/Ky.jpg" alt="Thân Văn Ký">
+                        </div>
+                        <p class="member-name">THÂN VĂN KÝ</p>
+                    </div>
+                    <div class="team-member fade-in">
+                        <div class="member-photo">
+                            <img src="~/images/Dung.jpg" alt="Vũ Trí Dũng">
+                        </div>
+                        <p class="member-name">VŨ TRÍ DŨNG</p>
+                    </div>
+                    <div class="team-member fade-in">
+                        <div class="member-photo">
+                            <img src="~/images/Duong.jpg" alt="Nguyễn Đình Dương">
+                        </div>
+                        <p class="member-name">NGUYỄN ĐÌNH DƯƠNG</p>
+                    </div>
+                </div>
+                <div class="team-row">
+                    <div class="team-member fade-in">
+                        <div class="member-photo">
+                            <img src="~/images/Nam.jpg" alt="Nguyễn Thành Nam">
+                        </div>
+                        <p class="member-name">NGUYỄN THÀNH NAM</p>
+                    </div>
+                    <div class="team-member fade-in">
+                        <div class="member-photo">
+                            <img src="~/images/Bao.jpg" alt="Dương Bá Hoàng Bảo">
+                        </div>
+                        <p class="member-name">DƯƠNG BÁ HOÀNG BẢO</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!--                HẾT                -->
+    <!-- Footer Section -->
+    <section class="features">
+        <!-- Phần công ty -->
+        <div class="featurecard">
+            <img src="~/images/Logo.png" alt="Company Logo">
+            <h3>CTY KIẾN TRÚC CẢNH QUAN</h3>
+            <br>
+            <p><i class="fas fa-map-marker-alt"></i> Studio: 439 Kha Vạn Cân, Hiệp Bình Chánh, TP.Thủ Đức</p>
+            <p><i class="fas fa-building"></i> Văn phòng: 32 Bác Ái, Bình Thọ, TP. Thủ Đức</p>
+            <p><i class="fas fa-industry"></i> Xưởng: 255 Võ Văn Ngân, Linh Chiểu, TP. Thủ Đức</p>
+            <p><i class="fas fa-phone-alt"></i> Điện thoại: 0902 520 536</p>
+            <p><i class="fas fa-fax"></i> Số Fax: 0968 8947</p>
+            <p><i class="fas fa-envelope"></i> Email: info@kdc.com</p>
+            <p><i class="fas fa-id-badge"></i> Mã số doanh nghiệp: 0421586682 cấp (30/10/2024)</p>
+        </div>
+
+        <!-- Phần Chính sách dịch vụ -->
+        <div class="policy-section">
+            <h2>CHÍNH SÁCH DỊCH VỤ</h2>
+            <ul class="policy-list">
+                <li><i class="fas fa-check-circle"></i> Vệ sinh</li>
+                <li><i class="fas fa-check-circle"></i> Chăm sóc định kỳ</li>
+                <li><i class="fas fa-check-circle"></i> Bảo dưỡng</li>
+            </ul>
+            <br>
+            <!-- Phần Dịch vụ -->
+            <h2>DỊCH VỤ</h2>
+            <div class="services-list">
+                <a asp-action="DichVu" asp-controller="Home">▶ Thiết kế & thi công hồ cá KOI</a>
+            </div>
+        </div>
+
+        <!-- Phần sản phẩm -->
+        <div class="product-section">
+            <h2>SẢN PHẨM</h2>
+            <div class="product-slider">
+                <div class="product-images">
+                    <img src="~/images/KOI_1.png" alt="Sản phẩm 1">
+                    <img src="~/images/KOI_2.png" alt="Sản phẩm 2">
+                    <img src="~/images/KOI_3.png" alt="Sản phẩm 3">
+                    <img src="~/images/KOI_4.png" alt="Sản phẩm 4">
+                    <img src="~/images/KOI_5.png" alt="Sản phẩm 5">
+                </div>
+            </div>
+        </div>
+        <!-- Phần Liên hệ báo giá -->
+        <div class="contact-section">
+            <h2>LIÊN HỆ BÁO GIÁ</h2>
+            <a class="hotline" href="#">HOTLINE: 0978 855 597</a>
+            <p><b>Gửi yêu cầu báo giá</b></p>
+        </div>
+    </section>
+
+    <footer>
+        <pre>CNPM Vietnam 2024  All Rights Reserved.                                                        Điều khoản sử dụng | Chính sách bảo mật | Chính sách và quy định chung</pre>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt thi công hồ cá Koi</title>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/c781fd97e2.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="~/images/Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/baogia.css">
+    <script defer src="~/js/baogia.js"></script>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <i class="fa fa-phone"></i> 0902 520 536
+        </div>
+        <div class="top-bar-right">
+
+            <a asp-action="QuanLi" asp-controller="Home"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a>
+            @if (User.Identity?.IsAuthenticated ?? false)
+            {
+                <a asp-controller="PersonalProfile" asp-action="Index" style="cursor: pointer"><i class="fa-solid fa-user"></i>@User.Identity.Name</a>
+                <a asp-controller="Account" asp-action="Logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Đăng Nhập</a>
+                <a asp-controller="Account" asp-action="Create"><i class="fa fa-user-plus"></i> Đăng Ký</a>
+            }
+            <a href="#"><i class="fab fa-facebook facebook-icon"></i></a>
+            <a href="#"><i class="fab fa-twitter twitter-icon"></i></a>
+            <a href="#"><i class="fab fa-youtube youtube-icon"></i></a>
+        </div>
+    </div>
+    <header>
+        <div class="logo-container">
+            <img src="~/images/Logo.png" alt="Logo">
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        </div>
+        <nav>
+            <ul>
+                <b>
+                <li><a onclick="location.href='@Url.Action("Index", "Home")'">Trang Chủ</a></li>
+                <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
+                <li><a asp-action="DuAn" asp-controller="Home">Dự Án</a></li>
+                <!-- Dropdown for Dịch vụ -->
+                <li class="navbar-dropdown">
+                    <a asp-action="DichVu" asp-controller="Home" class="dropdown-toggler">Dịch vụ<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a asp-action="DichVu" asp-controller="Home">Thiết kế và thi công hồ cá KOI</a></li>
+                    </ul>
+                </li>
+                <!-- Dropdown for Báo Giá -->
+                <li class="navbar-dropdown">
+                    <a asp-action="BaoGia" asp-controller="Home" class="dropdown-toggler">Báo Giá<i class="fa fa-angle-down"></i></a>
+                    <ul class="dropdown">
+                        <li><a asp-action="BaoGia" asp-controller="Home">Báo giá thiết kế hồ cá KOI</a></li>
+                    </ul>
+                </li>
+                <li><a asp-action="Blog" asp-controller="Home">Blog</a></li>
+                <li><a asp-action="LienHe" asp-controller="Home">Liên Hệ</a></li>
+                </b>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Phần header với hình ảnh lớn -->
+    <section class="trang-bao-gia">
+        <div class="trang-bao-gia-overlay">
+            <h1>BẢNG</h1>
+            <h1>BÁO GIÁ</h1>
+            <p><a onclick="location.href='@Url.Action("Index", "Home")'" style="color: #fff; text-decoration: none;">Trang chủ</a> >> Báo giá</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="project-bao-gia fade-in">
+            <div class="sub-bao-gia fade-in">
+                <h2>BẢNG BÁO GIÁ THI CÔNG HỒ CÁ KOI</h2>
+            </div>
+            <div class="text-bao-gia fade-in">
+                <p>Nếu bạn làm hồ cá Koi mini thì chi phí khá nhẹ nhàng. Nhưng nếu là hồ cá Koi lớn, bạn cần phải cân nhắc kỹ và tham khảo giá thành từ nhiều đơn vị thi công khác nhau trước.</p>
+            </div>
+
+            <div class="image-bao-gia fade-in">
+                <img src="~/images/H11.jpg" alt="Hồ cá Koi đẹp">
+            </div>
+
+            <div class="text-bao-gia fade-in">
+                <p>Bảng báo giá chi phí thi công hồ cá koi dưới đây là mức tham khảo. Chi phí thi công hồ cá koi phụ thuộc vào rất nhiều yếu tố: kích thước hồ, chủng loại cá koi, các tiểu cảnh đi kèm,…</p>
+            </div>
+
+            <div class="image-bao-gia fade-in">
+                <img src="~/images/H19.jpg" alt="Hồ cá Koi đẹp">
+            </div>
+
+            <div class="text-bao-gia fade-in">
+                <h3>Phạm vi công việc:</h3>
+                <p>
+                    <ul>
+                        <li> Đổ bê tông, chống thấm thành hồ, đáy hồ và hầm lọc</li>
+                        <li> Công tác M&E đấu nối điện nước sân vườn</li>
+                        <li> Hệ thống lọc</li>
+                        <li> Thi công kè đá nghệ thuật</li>
+                        <li> Thi công lắp đặt đèn đá Nhật</li>
+                        <li> Thi công sàn gỗ hầm lọc</li>
+                        <li> Thi công phối kết cây bụi và hoa tạo cảnh nghệ thuật </li>
+                        <li> Thi công cây tầm trung</li>
+                    </ul>
+                </p>
+            </div>
+
+            <div class="image-bao-gia fade-in">
+                <img src="~/images/H18.jpg" alt="Hồ cá Koi đẹp">
+            </div>
+
+            <div class="text-bao-gia fade-in">
+                <pre>Đội ngũ KDC đang tiến hành thi công hồ cá Koi ở Bắc Giang</pre>
+            </div>
+        </section>
+
+        <!-- Phần Quy Trình dich-vu -->
+        <section class="quy-trinh-bao-gia fade-in">
+            <h2>QUY TRÌNH THỰC HIỆN DỰ ÁN</h2>
+            <div class="quy-trinh-cac-buoc-bao-gia fade-in">
+                <div class="buoc-bao-gia">
+                    <div class="so-buoc-bao-gia fade-in">1</div>
+                    <div class="noi-dung-buoc-bao-gia fade-in">
+                        <h3>Lập nhiệm vụ và Báo giá</h3>
+                        <p>Bao gồm:</p>
+                        <p>NVT&Moodboard - Tiến độ dự kiến - Báo giá & hợp đồng thiết kế</p>
+                    </div>
+                </div>
+                <div class="buoc-bao-gia fade-in">
+                    <div class="so-buoc-bao-gia fade-in">3</div>
+                    <div class="noi-dung-buoc-bao-gia fade-in">
+                        <h3>Lập hồ sơ thiết kế đến thi công</h3>
+                        <p>Bao gồm:</p>
+                        <p>hồ sơ thiết kế cơ sở và hồ sơ thiết kế thi công</p>
+                    </div>
+                </div>
+                <div class="buoc-bao-gia fade-in">
+                    <div class="so-buoc-bao-gia fade-in">5</div>
+                    <div class="noi-dung-buoc-bao-gia fade-in">
+                        <h3>Tổ chức thi công từ đầu đến cuối</h3>
+                        <p>Bao gồm:</p>
+                        <p>thi công hoặc quản lý, điều phối và giám sát dự án</p>
+                    </div>
+                </div>
+                <div class="buoc-bao-gia fade-in">
+                    <div class="so-buoc-bao-gia fade-in">2</div>
+                    <div class="noi-dung-buoc-bao-gia fade-in">
+                        <h3>Lập hồ sơ thiết kế ý tưởng</h3>
+                        <p>Bao gồm:</p>
+                        <p>hình ảnh 2D&3D - thuyết minh, spec - mô hình mô phỏng</p>
+                    </div>
+                </div>
+                <div class="buoc-bao-gia fade-in">
+                    <div class="so-buoc-bao-gia fade-in">4</div>
+                    <div class="noi-dung-buoc-bao-gia fade-in">
+                        <h3>Lập báo giá thi công</h3>
+                        <p>Bao gồm các công tác:</p>
+                        <p>BOQ, khái toán, dự toán theo định mức nhà nước, báo giá hợp đồng</p>
+                    </div>
+                </div>
+                <div class="buoc-bao-gia fade-in">
+                    <div class="so-buoc-bao-gia fade-in">6</div>
+                    <div class="noi-dung-buoc-bao-gia fade-in">
+                        <h3>Nghiệm thu, bàn giao, bảo dưỡng</h3>
+                        <p>Nghiệm thu bàn giao, bảo hành, bảo dưỡng và lập hồ sơ hoàn công</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Phần dich-vu với Chúng Tôi -->
+        <section id="full-width-bao-gia">
+            <div class="noi-dung-bao-gia">
+                <h2>Xem thêm dự án</h2>
+                <a asp-action="DuAn" asp-controller="Home"><button class="nut-nhan-bao-gia">Xem tất cả</button></a>
+            </div>
+        </section>
+    </main>
+    <!--                HẾT                -->
+    <!-- Footer Section -->
+    <section class="features">
+        <!-- Phần công ty -->
+        <div class="featurecard">
+            <img src="~/images/Logo.png" alt="Company Logo">
+            <h3>CTY KIẾN TRÚC CẢNH QUAN</h3>
+            <br>
+            <p><i class="fas fa-map-marker-alt"></i> Studio: 439 Kha Vạn Cân, Hiệp Bình Chánh, TP.Thủ Đức</p>
+            <p><i class="fas fa-building"></i> Văn phòng: 32 Bác Ái, Bình Thọ, TP. Thủ Đức</p>
+            <p><i class="fas fa-industry"></i> Xưởng: 255 Võ Văn Ngân, Linh Chiểu, TP. Thủ Đức</p>
+            <p><i class="fas fa-phone-alt"></i> Điện thoại: 0902 520 536</p>
+            <p><i class="fas fa-fax"></i> Số Fax: 0968 8947</p>
+            <p><i class="fas fa-envelope"></i> Email: info@kdc.com</p>
+            <p><i class="fas fa-id-badge"></i> Mã số doanh nghiệp: 0421586682 cấp (30/10/2024)</p>
+        </div>
+
+        <!-- Phần Chính sách dịch vụ -->
+        <div class="policy-section">
+            <h2>CHÍNH SÁCH DỊCH VỤ</h2>
+            <ul class="policy-list">
+                <li><i class="fas fa-check-circle"></i> Vệ sinh</li>
+                <li><i class="fas fa-check-circle"></i> Chăm sóc định kỳ</li>
+                <li><i class="fas fa-check-circle"></i> Bảo dưỡng</li>
+            </ul>
+            <br>
+            <!-- Phần Dịch vụ -->
+            <h2>DỊCH VỤ</h2>
+            <div class="services-list">
+                <a asp-action="DichVu" asp-controller="Home">▶ Thiết kế & thi công hồ cá KOI</a>
+            </div>
+        </div>
+
+        <!-- Phần sản phẩm -->
+        <div class="product-section">
+            <h2>SẢN PHẨM</h2>
+            <div class="product-slider">
+                <div class="product-images">
+                    <img src="~/images/KOI_1.png" alt="Sản phẩm 1">
+                    <img src="~/images/KOI_2.png" alt="Sản phẩm 2">
+                    <img src="~/images/KOI_3.png" alt="Sản phẩm 3">
+                    <img src="~/images/KOI_4.png" alt="Sản phẩm 4">
+                    <img src="~/images/KOI_5.png" alt="Sản phẩm 5">
+                </div>
+            </div>
+        </div>
+        <!-- Phần Liên hệ báo giá -->
+        <div class="contact-section">
+            <h2>LIÊN HỆ BÁO GIÁ</h2>
+            <a class="hotline" href="#">HOTLINE: 0978 855 597</a>
+            <p><b>Gửi yêu cầu báo giá</b></p>
+        </div>
+    </section>
+
+    <footer>
+        <pre>CNPM Vietnam 2024  All Rights Reserved.                                                        Điều khoản sử dụng | Chính sách bảo mật | Chính sách và quy định chung</pre>
+    </footer>
+</body>
+</html>  

@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using KoiPool_Project.Models.ViewModels;
 using System.Security.Claims;
+
 namespace KoiPool_Project.Controllers
 {
     public class AccountController : Controller
     {
         private readonly UserManager<AppUserModel> _userManager;
-        private SignInManager<AppUserModel> _signInManager;
+        private readonly SignInManager<AppUserModel> _signInManager;
         private readonly DataContext _context;
 
         public AccountController(
@@ -28,28 +29,38 @@ namespace KoiPool_Project.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel loginVM, string returnUrl = "")
+        public async Task<IActionResult> Login(LoginViewModel loginVM, string returnUrl = null)
         {
             if (ModelState.IsValid)
             {
-                Microsoft.AspNetCore.Identity.SignInResult result =
-                    await _signInManager.PasswordSignInAsync(loginVM.Username, loginVM.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(loginVM.Username, loginVM.Password, false, false);
 
                 if (result.Succeeded)
                 {
-                    // Lấy thông tin người dùng từ UserManager
+                    // Retrieve the user info
                     var user = await _userManager.FindByNameAsync(loginVM.Username);
-                    string email = user?.Email;
 
-                    // Log hoặc xử lý Email
-                    Console.WriteLine($"Người dùng đã đăng nhập với email: {email}");
-
-                    return RedirectToAction("Index", "Home");
+                    if (user != null)
+                    {
+                        // Check roles and redirect accordingly
+                        if (await _userManager.IsInRoleAsync(user, "Admin"))
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "Admin" }); // Redirect to Admin area
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home"); // Redirect to User's home page
+                        }
+                    }
                 }
+
                 ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không chính xác");
             }
+
+            // Return the view with the login model
             return View(loginVM);
         }
+
         public IActionResult Create()
         {
             return View();
@@ -63,7 +74,7 @@ namespace KoiPool_Project.Controllers
             {
                 try
                 {
-                    // Kiểm tra xem email đã tồn tại chưa
+                    // Check if email already exists
                     var existingUser = await _userManager.FindByEmailAsync(user.Email);
                     if (existingUser != null)
                     {
@@ -71,7 +82,7 @@ namespace KoiPool_Project.Controllers
                         return View(user);
                     }
 
-                    // Kiểm tra username đã tồn tại chưa
+                    // Check if username already exists
                     var existingUsername = await _userManager.FindByNameAsync(user.Username);
                     if (existingUsername != null)
                     {
@@ -83,14 +94,17 @@ namespace KoiPool_Project.Controllers
                     {
                         UserName = user.Username,
                         Email = user.Email,
-                        Occupation = "User" // Giá trị mặc định
+                        Occupation = "User" // Default role or occupation
                     };
 
                     var result = await _userManager.CreateAsync(newUser, user.Password);
 
                     if (result.Succeeded)
                     {
-                        // Đăng nhập người dùng sau khi đăng ký thành công
+                        // Assign default role (e.g., "User")
+                        await _userManager.AddToRoleAsync(newUser, "User");
+
+                        // Sign in the user after successful registration
                         await _signInManager.SignInAsync(newUser, isPersistent: false);
                         return RedirectToAction("Index", "Home");
                     }
@@ -102,15 +116,14 @@ namespace KoiPool_Project.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Log lỗi
                     ModelState.AddModelError("", "Đã xảy ra lỗi trong quá trình đăng ký: " + ex.Message);
                 }
             }
 
-            // Trả về view với các lỗi nếu có
             return View(user);
         }
-        // Phương thức kiểm tra kết nối database
+
+        // Method to test database connection
         public IActionResult TestDbConnection()
         {
             try
@@ -123,10 +136,11 @@ namespace KoiPool_Project.Controllers
                 return Json(new { success = false, message = ex.Message });
             }
         }
+
         public async Task<IActionResult> Logout(string returnUrl = "/")
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", returnUrl);
+            return Redirect(returnUrl);
         }
     }
 }
