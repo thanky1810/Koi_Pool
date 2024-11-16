@@ -25,8 +25,7 @@
             <h1>KDC Vietnam</h1>
             <ul>
                 <li><a href="#"><i class="fas fa-user-circle"></i> Thông tin cá nhân</a></li>
-                <li><a href="#"><i class="fas fa-cogs"></i> Quản lí bảo dưỡng</a></li>
-                <li><a href="#"><i class="fas fa-project-diagram"></i> Quản lí thi công</a></li>
+                <li><a href="#"><i class="fas fa-cogs"></i> Đôi Mật Khẩu</a></li>
             </ul>
         </div>
 
@@ -70,7 +69,6 @@
             <!-- Update Form (initially hidden) -->
             <div class="phan thong-tin-ca-nhan" id="updateForm" style="display: none;">
                 <h2>Thông Tin Cá Nhân</h2>
-                <div class="chi-tiet-thong-tin">
                     <form asp-action="Update" asp-controller="PersonalProfile" method="post">
                         <p><strong>Họ và Tên:</strong> <input asp-for="Name" class="form-control" placeholder="@User.FindFirstValue("Name")" /></p>
                         <p><strong>Email:</strong> <input asp-for="Email" class="form-control" placeholder="@User.FindFirstValue(ClaimTypes.Email)" /> </p>
@@ -85,41 +83,34 @@
                         <!-- Back Button -->
                         <button type="button" class="nut-chinh-sua" onclick="toggleUpdateForm()">Quay Lại</button>
                     </form>
+            </div>
+
+            <div class="phan quan-ly-thanh-toan" id="changePasswordForm">
+                <h2>Đổi mật khẩu</h2>
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger">@Html.Raw(TempData["ErrorMessage"])</div>
+                }
+
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success">@Html.Raw(TempData["SuccessMessage"])</div>
+                }
+                <div class="chi-tiet-thong-tin">
+                    <form asp-action="ChangePassword" asp-controller="PersonalProfile" method="post">
+                        <p><strong>Mật khẩu hiện tại:</strong></p>
+                        <input name="currentPassword" class="form-control" placeholder="Nhập mật khẩu hiện tại" />
+
+                        <p><strong>Mật khẩu mới:</strong></p>
+                        <input name="newPassword" class="form-control" placeholder="Nhập mật khẩu mới" />
+
+                        <p><strong>Xác nhận mật khẩu mới:</strong></p>
+                        <input name="confirmPassword" class="form-control" placeholder="Xác nhận mật khẩu mới" />
+
+                        <p><button class="nut-chinh-sua" type="submit" class="btn btn-primary mt-3">Cập nhật mật khẩu</button></p>
+                    </form>
                 </div>
             </div>
-
-            <!-- Order History Section -->
-            <div class="phan lich-su-don-hang">
-                <h2>Lịch Sử Đơn Hàng</h2>
-                <div id="don-hang-container">
-                    <!-- Orders will be injected here by JavaScript -->
-                </div>
-            </div>
-
-            <!-- Payment Management Section -->
-            <div class="phan quan-ly-thanh-toan">
-                <h2>Quản Lý Thanh Toán</h2>
-                <table class="bang-thanh-toan" id="bang-thanh-toan">
-                    <tr>
-                        <th>Mã Giao Dịch</th>
-                        <th>Ngày</th>
-                        <th>Số Tiền</th>
-                        <th>Trạng Thái</th>
-                    </tr>
-                    <!-- Payment rows will be injected here by JavaScript -->
-                </table>
-            </div>
-
-            <!-- Reward Points Section -->
-            <div class="phan diem-thuong">
-                <h2>Điểm Thưởng</h2>
-                <p><span class="diem-hien-tai" id="diem-hien-tai">0</span> điểm</p>
-                <div class="thanh-tien-trinh">
-                    <div class="muc-tien-trinh" id="muc-tien-trinh" style="width: 0%;"></div>
-                </div>
-                <p>Mục tiêu tiếp theo: <span id="muc-tieu-tiep-theo">2000</span> điểm</p>
-            </div>
-
         </div>
     </div>
 

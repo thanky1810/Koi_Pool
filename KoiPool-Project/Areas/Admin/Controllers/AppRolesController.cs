@@ -13,13 +13,16 @@ namespace KoiPool_Project.Areas.Admin.Controllers
     {
         private readonly UserManager<AppUserModel> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<AppUserModel> _signInManager;
 
         public AppRolesController(
             UserManager<AppUserModel> userManager,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            SignInManager<AppUserModel> signInManager)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -133,5 +136,11 @@ namespace KoiPool_Project.Areas.Admin.Controllers
 
             return View(model);
         }
+        public async Task<IActionResult> Logout(string returnUrl = "/")
+        {
+            await _signInManager.SignOutAsync();
+            return Redirect(returnUrl);
+        }
     }
+
 }
