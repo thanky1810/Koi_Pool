@@ -29,10 +29,8 @@
 
             @if (User.Identity?.IsAuthenticated ?? false)
             {
-                <a asp-controller="PersonalProfile" asp-action="Index" style="cursor: pointer">
                     <i class="fa-solid fa-user"></i> @User.Identity.Name
-                </a>
-                <a asp-controller="Account" asp-action="Logout" style="cursor: pointer">
+                <a asp-controller="AppRoles" asp-action="Logout" style="cursor: pointer">
                     <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
                 </a>
             }
@@ -59,7 +57,7 @@
             <ul>
                 <b>
                 <li><a onclick="location.href='@Url.Action("Index", "Home")'">Trang Chủ</a></li>
-                <li><a asp-action="Blog" asp-controller="Home">Create</a></li>
+               
                 <li><a asp-action="GioiThieu" asp-controller="Home">Giới Thiệu</a></li>
                 <li><a asp-action="DuAn" asp-controller="Home">Dự Án</a></li>
                 <!-- Dropdown for Dịch vụ -->
@@ -77,7 +75,7 @@
                     </ul>
                 </li>
                 <li><a asp-action="Blog" asp-controller="Home">Blog</a></li>
-                <li><a asp-action="LienHe" asp-controller="Home">Liên Hệ</a></li>
+                <li><a asp-action="Create" asp-controller="AppRoles">Create</a></li>
                 </b>
             </ul>
         </nav>

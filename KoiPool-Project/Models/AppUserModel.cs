@@ -11,5 +11,6 @@ namespace KoiPool_Project.Models
         public string Address { get; set; }
         public string Sex { get; set; }
 
+
     }
 }
