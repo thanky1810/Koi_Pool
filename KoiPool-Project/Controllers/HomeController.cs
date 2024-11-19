@@ -1,6 +1,9 @@
+﻿
 using KoiPool_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.AccessControl;
 
 namespace KoiPool_Project.Controllers
 {
@@ -8,9 +11,12 @@ namespace KoiPool_Project.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DataContext _context;
+
+        public HomeController(ILogger<HomeController> logger, DataContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult GioiThieu()
@@ -73,9 +79,10 @@ namespace KoiPool_Project.Controllers
         {
             return View();
         }
-        public IActionResult QuanLi()
+        public async Task<IActionResult> QuanLi()
         {
-            return View();
+
+            return View(await _context.UserOrders.ToListAsync());
         }
         public IActionResult LichSu()
         {

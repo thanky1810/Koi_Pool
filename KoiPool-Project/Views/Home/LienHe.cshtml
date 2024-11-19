@@ -10,7 +10,30 @@
     <script src="https://kit.fontawesome.com/c781fd97e2.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="~/images/Logo.png" type="image/x-icon">
     <link rel="stylesheet" href="~/css/lienhe.css">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                var message = '@TempData["success"]';
+                if (message && message !== '') {
+                    Swal.fire({
+                        title: 'Thành công!',
+                        text: "Gửi yêu cầu thành công",
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                }
+            });
+    </script>
+
     <script defer src="~/js/lienhe.js"></script>
+
+
+    <footer>
+        <pre>CNPM Vietnam 2024  All Rights Reserved.                                                        Điều khoản sử dụng | Chính sách bảo mật | Chính sách và quy định chung</pre>
+    </footer>
+ 
 </head>
 <body>
     <!-- Top Bar -->
@@ -96,18 +119,16 @@
         <section class="bieu-mau-lien-he animated fade-in-up">
             <div class="khung-bieu-mau">
                 <h2>Đăng ký để nhận báo giá ngay hôm nay</h2>
-                @model KoiPool_Project.Models.RequestModel
-                <form asp-action="SubmitRequest" asp-controller="Request" method="post">
+                @model KoiPool_Project.Models.UserOrderModel
+                <form asp-action="Checkout" asp-controller="Checkout" method="post">
                     <input type="text" asp-for="FullName" placeholder="Họ tên*" required />
                     <input type="tel" asp-for="PhoneNumber" placeholder="Số điện thoại*" required />
                     <input type="text" asp-for="Address" placeholder="Địa chỉ*" required />
-                    <input type="email" asp-for="Email" placeholder="Email*" required />
                     <input type="text" asp-for="GardenArea" placeholder="Diện tích sân vườn (m2)*" required />
                     <select asp-for="ServiceType" required>
                         <option value="" disabled selected>Chọn dịch vụ*</option>
                         <option value="thi-cong">Thi công</option>
                         <option value="thiet-ke">Bảo dưỡng</option>
-                        <option value="tu-van">Tư vấn</option>
                     </select>
                     <textarea asp-for="RequestContent" placeholder="Nội dung yêu cầu"></textarea>
                     <div>
@@ -142,9 +163,6 @@
         </section>
     </main>
 
-    <footer>
-        <pre>CNPM Vietnam 2024  All Rights Reserved.                                                        Điều khoản sử dụng | Chính sách bảo mật | Chính sách và quy định chung</pre>
-    </footer>
 
 </body>
 </html>

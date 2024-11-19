@@ -1,9 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     // Dữ liệu mẫu cho lịch sử đơn hàng
-    const donHangData = [
-        { id: 12345, ngayDat: "2023-01-20", trangThai: "Hoàn tất" },
-        { id: 12346, ngayDat: "2023-02-10", trangThai: "Đang xử lý" }
-    ];
+
 
     // Dữ liệu mẫu cho quản lý thanh toán
     const thanhToanData = [

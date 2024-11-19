@@ -10,6 +10,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add TempData provider
+builder.Services.AddControllersWithViews()
+    .AddSessionStateTempDataProvider();
+
+// Add Memory Cache and Session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+});
+
 // Add Identity
 builder.Services.AddIdentity<AppUserModel, IdentityRole>(options =>
 {
@@ -19,10 +32,8 @@ builder.Services.AddIdentity<AppUserModel, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
     options.Password.RequiredLength = 6;
-
     // User settings
     options.User.RequireUniqueEmail = true;
-
     // SignIn settings
     options.SignIn.RequireConfirmedAccount = false;
     options.SignIn.RequireConfirmedEmail = false;
@@ -41,16 +52,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromHours(24);
     options.SlidingExpiration = true;
     options.Cookie.HttpOnly = true;
-});
-
-// Add MVC
-builder.Services.AddControllersWithViews();
-
-
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(option => {
-    option.IdleTimeout = TimeSpan.FromMinutes(10);
-    option.Cookie.IsEssential = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 var app = builder.Build();
@@ -66,7 +68,7 @@ else
     app.UseDeveloperExceptionPage();
 }
 
-// Ensure database exists and migrations are applied
+// Database migration
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -75,10 +77,8 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<DataContext>();
         var userManager = services.GetRequiredService<UserManager<AppUserModel>>();
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-
         await context.Database.MigrateAsync();
 
-        // Seed default roles if they don't exist
         if (!roleManager.Roles.Any())
         {
             await roleManager.CreateAsync(new IdentityRole("Admin"));
@@ -92,27 +92,23 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.UseAuthentication();
-
-app.UseAuthorization();
-
 app.UseSession();
-
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
         name: "areas",
         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    
 });
 
 app.Run();

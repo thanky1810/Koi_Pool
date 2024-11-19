@@ -1,7 +1,6 @@
 ﻿using KoiPool_Project.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using KoiPool_Project.Models.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace KoiPool_Project.Controllers
@@ -14,28 +13,31 @@ namespace KoiPool_Project.Controllers
             _context = dataContext;
         }
 
-        public async Task<IActionResult> Checkout()
+        public async Task<IActionResult> Checkout(string? FullName, string? PhoneNumber, string? Address, double? GardenArea, string? ServiceType, string? RequestContent)
         {
+
             var userEmail = User.FindFirstValue(ClaimTypes.Email);
             if (userEmail == null)
             {
                 return RedirectToAction("Login", "Account");
             }
-            else
-            {
-                var orderCode = Guid.NewGuid().ToString();
-                var orderItem = new OrderModel();
-                orderItem.OrderCode = orderCode;
-                orderItem.UserName = userEmail;
-                orderItem.status = 1;
-                orderItem.CreatedDate = DateTime.Now;
-                _context.Add(orderItem);
-                _context.SaveChanges();
-                TempData["success"] = "Đơn hàng được tạo";
-                return RedirectToAction("Index");
+            var orderCode = Guid.NewGuid().ToString();
+            var orderItem = new UserOrderModel();
+            orderItem.OrderCode = orderCode;
+            orderItem.Email = userEmail;
+            orderItem.Status = 1;
+            orderItem.FullName = FullName;
+            orderItem.CreatedTime = DateTime.Now;
+            orderItem.PhoneNumber = PhoneNumber;
+            orderItem.Address = Address;
+            orderItem.GardenArea = (double)GardenArea;
+            orderItem.ServiceType = ServiceType;
+            orderItem.RequestContent = RequestContent;
+            _context.Add(orderItem);
+            _context.SaveChanges();
+            TempData["success"] = "Đơn hàng được tạo";
 
-            }
-            return View();
+            return RedirectToAction("LienHe", "Home");
         }
     }
 }
