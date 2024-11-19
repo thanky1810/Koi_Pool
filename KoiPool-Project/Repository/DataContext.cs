@@ -14,6 +14,9 @@ public class DataContext : IdentityDbContext<AppUserModel>
     public DbSet<AppUserModel> AppUsers { get; set; }
     public DbSet<HistoryModel> Histories { get; set; }
     public DbSet<RequestModel> Requests { get; set; }
+
+    public DbSet<UserOrderModel> UserOrders { get; set; }
+    public DbSet<RequestModel> UserOrder {  get; set; }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

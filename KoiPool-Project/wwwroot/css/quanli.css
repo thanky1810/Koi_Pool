@@ -128,10 +128,9 @@ body {
     margin-top: 80px;
     margin-left: 240px;
     padding: 20px;
-    width: calc(100% - 240px);
-    max-width: 800px;
-    box-sizing: border-box;
-    animation: scaleUp 0.5s ease; /* Hiệu ứng thu phóng khi hiển thị */
+    width: calc(100% - 240px); /* Đảm bảo nội dung chính chiếm toàn bộ trừ phần sidebar */
+    max-width: 100%; /* Thay đổi từ 800px thành 100% */
+    box-sizing: border-box; /* Hiệu ứng thu phóng khi hiển thị */
 }
 
 /* Các phần */
@@ -141,8 +140,7 @@ body {
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-    transform: translateY(0);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
 }
 
     .phan:hover {
@@ -357,3 +355,30 @@ body {
     background-color: #dff0d8;
     border-color: #d6e9c6;
 }
+
+
+
+.table {
+    width: 100%; /* Đảm bảo bảng chiếm hết chiều rộng */
+    border-collapse: collapse;
+}
+
+    .table th, .table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left; /* Căn trái nội dung */
+    }
+
+    .table th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        text-align: center; /* Căn giữa tiêu đề */
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f9f9f9; /* Tô màu hàng chẵn */
+    }
+
+    .table tr:hover {
+        background-color: #f1f1f1; /* Hiệu ứng hover */
+    }
